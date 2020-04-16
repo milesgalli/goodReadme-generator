@@ -2,12 +2,29 @@ const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
 
-const filter = [ 'username','blog', 'email address', 'company', 'location', 'avatar_url'];
+const filter = [
+  "username",
+  "email",
+  "title",
+  "description",
+  "contents",
+  "isntallation",
+  "usage",
+  "licensing",
+  "avatar_url",
+];
 
 function createReadme(answerObj) {
   let result = "";
+
   for (const key in answerObj) {
-    if (!filter.includes(key)) result += key + ":" + " " + answerObj[key] + "\n" + "\n"; 
+    if (!filter.includes(key)) {
+      continue
+    }
+    let formattedKey = key.slice(0,1).toUpperCase() + key.slice(1) ; 
+    console.log(formattedKey);
+      result += formattedKey+ ":" + " " + answerObj[key] + "\n" + "\n";
+    
   }
   return result;
 }
@@ -15,15 +32,15 @@ function createReadme(answerObj) {
 inquirer
   .prompt([
     {
-      name: "Username",
+      name: "username",
       message: "What is your github user name ?",
     },
     {
-      name: "Email Address",
+      name: "email_address",
       message: "What is your email adress? ",
-    }
+    },
     // {
-    //   name: "Title",
+    //   name: "title",
     //   message: "What is the title of your project? ",
 
     // },
@@ -66,23 +83,19 @@ inquirer
     //     message: "Additonal thoughts or questions ",
     //   },
 
-
-    
-
     // questions here
-
   ])
 
   .then(async (answer) => {
     //call api
 
-    // need to change 
+    //console.log(answer.username);
 
-    let response = await axios.get("https://api.github.com/users/milesgalli");
-      console.log(response);
-      
-    let payload = createReadme(Object.assign(answer,response.data));
+    // need to change
 
+    let response = await axios.get(`https://api.github.com/users/${answer.username}`);
+
+    let payload = createReadme(Object.assign(answer, response.data));
 
     fs.writeFileSync("readme.md", payload);
   })
