@@ -4,14 +4,18 @@ const inquirer = require("inquirer");
 
 const filter = [
   "username",
-  "email",
+  "email_address",
   "title",
+  "avatar_url",
   "description",
   "contents",
-  "isntallation",
+  "installation",
   "usage",
-  "licensing",
-  "avatar_url",
+  "license",
+  "contribution",
+  "test", 
+  "questions", 
+  "links",
 ];
 
 function createReadme(answerObj) {
@@ -22,8 +26,8 @@ function createReadme(answerObj) {
       continue
     }
     let formattedKey = key.slice(0,1).toUpperCase() + key.slice(1) ; 
-    console.log(formattedKey);
-      result += formattedKey+ ":" + " " + answerObj[key] + "\n" + "\n";
+   // console.log(formattedKey);
+      result += formattedKey+ ":" + " " + answerObj[key] + "\n" + "\n" ;
     
   }
   return result;
@@ -39,59 +43,58 @@ inquirer
       name: "email_address",
       message: "What is your email adress? ",
     },
-    // {
-    //   name: "title",
-    //   message: "What is the title of your project? ",
+    {
+      name: "title",
+      message: "What is the title of your project? ",
 
-    // },
-    // {
-    //     name: "Description ?",
-    //     message: "What is the project description ? ",
-    //   },
+    },
+    {
+        name: "description",
+        message: "What is the project description ? ",
+      },
 
-    //   {
-    //     name: "Contents",
-    //     message: " Table of contents for the assingment ? ",
-    //   },
+      {
+        name: "contents",
+        message: " What is the table of contents for the assingment ? ",
+      },
 
-    //   {
-    //     name: "installation",
-    //     message: "Installation guide ? ",
-    //   },
+      {
+        name: "installation",
+        message: " What is the installation guide ? ",
+      },
 
-    //   {
-    //     name: "Usage",
-    //     message: "What is the usage of your application ",
-    //   },
+      {
+        name: "usage",
+        message: "What is the usage of your application ? ",
+      },
 
-    //   {
-    //     name: "licnese",
-    //     message: "What is the licnese ",
-    //   },
+      {
+        name: "license",
+        message: "What type of license is it ? ",
+      },
 
-    //   {
-    //     name: "Contributing",
-    //     message: "Who else contributed to the assignment ? ",
-    //   },
+      {
+        name: "contribution",
+        message: "Who else contributed to the assignment ? ",
+      },
 
-    //   {
-    //     name: "Test",
-    //     message: "What tests did you do for the application ? ",
-    //   },
-    //   {
-    //     name: "questions",
-    //     message: "Additonal thoughts or questions ",
-    //   },
+      {
+        name: "test",
+        message: "What tests did you do for the application ? ",
+      },
+      {
+        name: "questions",
+        message: "Additonal thoughts or questions ? ",
+      },
+    {
+          name: "links",
+          message: "Any other additional links needed ?  ",
+        }
 
     // questions here
   ])
 
   .then(async (answer) => {
-    //call api
-
-    //console.log(answer.username);
-
-    // need to change
 
     let response = await axios.get(`https://api.github.com/users/${answer.username}`);
 
