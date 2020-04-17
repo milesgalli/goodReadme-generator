@@ -27,7 +27,7 @@ function createReadme(answerObj) {
     }
     let formattedKey = key.slice(0,1).toUpperCase() + key.slice(1) ; 
    // console.log(formattedKey);
-      result += formattedKey+ ":" + " " + answerObj[key] + "\n" + "\n" ;
+      result += "##" + " "+ formattedKey+ ":" + " " + "\n" +  answerObj[key] + "\n" + "\n" ;
     
   }
   return result;
@@ -45,7 +45,7 @@ inquirer
     },
     {
       name: "title",
-      message: "What is the title of your project? ",
+      message: "What is the title omf your project? ",
 
     },
     {
@@ -97,9 +97,9 @@ inquirer
   .then(async (answer) => {
 
     let response = await axios.get(`https://api.github.com/users/${answer.username}`);
-
+    console.log(response);
     let payload = createReadme(Object.assign(answer, response.data));
-
+    
     fs.writeFileSync("readme.md", payload);
   })
 

@@ -11,4 +11,4 @@ Once the app is set up, run node index.js and answer the questions to generate y
 
 
 # Final Thoughts:
-This assignment took abit of getting used to, i found the filtering and creating the readme resposne abit tricky. Im still getting used to the command prompts and working out of the terminal. I still find dealing with objects abit annoying, but as we transition into object oriented programming. More practice with objects should improve my confidence when working with them. 
+This assignment took abit of getting used to, i found the filtering and creating the readme resposne abit tricky. Im still getting used to the command prompts and working out of the terminal. I still find dealing with objects abit annoying, but as we transition into object oriented programming. More practice with objects should improve my confidence when working with them. g with them. g with them. milesgalli
